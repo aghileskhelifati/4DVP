@@ -1,0 +1,17 @@
+name: Log Group 
+
+on:
+  push:
+    
+
+jobs:
+  log_group:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create log group
+      run: |
+        echo "::group::ecole-it"
+        echo "hello, ecole-it"
+        echo "::endgroup::"
+    - name: Display message outside group
+      run: echo "ceci n'est pas dans le groupe"
