@@ -1,0 +1,29 @@
+name: outputs workflow
+
+on:
+  push:
+   
+
+jobs:
+  prepare_tests:
+    runs-on: ubuntu-latest
+
+    outputs:
+      HOST: ${{ steps.setup_host.outputs.HOST }}
+      DATABASE: ${{ steps.setup_host.outputs.DATABASE }}
+
+    steps:
+    - name: setup_host
+      run: |
+        echo "::set-output name=HOST::srv1"
+        echo "::set-output name=DATABASE::prep002"
+
+  display_infos:
+    needs: prepare_tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: display_host_and_database
+      run: |
+        echo "HOST=${{ needs.prepare_tests.outputs.HOST }}"
+        echo "DATABASE=${{ needs.prepare_tests.outputs.DATABASE }}"
