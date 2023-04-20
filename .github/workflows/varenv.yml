@@ -1,0 +1,12 @@
+name: Display Environment Variables
+
+on: [push]
+
+jobs:
+  display_env:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set environment variable
+      run: echo "MESSAGE='Ceci est une variable d'environnement'" >> $GITHUB_ENV
+    - name: Display environment variable
+      run: echo $MESSAGE
